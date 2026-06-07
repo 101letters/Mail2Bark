@@ -1,0 +1,10 @@
+services:
+  mail2bark:
+    build: .
+    container_name: mail2bark
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - ./data:/data

@@ -1,0 +1,51 @@
+env_file: .env
+poll_interval: 30
+since_days: 3
+state_path: /data/state.sqlite3
+startup_mark_seen: true
+post_action: mark_seen
+log_level: INFO
+
+bark:
+  server: ${BARK_SERVER}
+  device_key: ${BARK_DEVICE_KEY}
+  group: mail-code
+  # sound: minuet
+  # level: timeSensitive
+
+llm:
+  enabled: false
+  base_url: ${LLM_BASE_URL}
+  api_key: ${LLM_API_KEY}
+  model: ${LLM_MODEL}
+  timeout: 30
+  max_text_chars: 6000
+
+accounts:
+  - name: personal
+    host: imap.example.com
+    port: 993
+    username: ${MAIL_PERSONAL_USER}
+    password: ${MAIL_PERSONAL_PASSWORD}
+    auth: password
+    mailbox: INBOX
+    ssl: true
+    idle: true
+    search: UNSEEN
+    since_days: 3
+    post_action: mark_seen
+    # Optional client-side filter. Useful when IMAP SUBJECT search is unreliable.
+    # subject_contains: Mail2BarkTest
+
+  - name: work
+    host: imap.example.org
+    port: 993
+    username: ${MAIL_WORK_USER}
+    password: ${MAIL_WORK_PASSWORD}
+    auth: password
+    mailbox: INBOX
+    ssl: true
+    idle: true
+    search: UNSEEN
+    since_days: 3
+    post_action: mark_seen

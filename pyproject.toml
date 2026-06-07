@@ -1,0 +1,19 @@
+[project]
+name = "mail2bark"
+version = "0.1.0"
+description = "Forward verification codes and links from multiple IMAP mailboxes to Bark."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+test = []
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["mail_bark_forwarder*"]
