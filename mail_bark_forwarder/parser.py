@@ -227,12 +227,18 @@ def extract_url_candidates(text: str) -> List[str]:
     return urls
 
 
+def _looks_like_css_dimension(code: str) -> bool:
+    return bool(re.fullmatch(r"\d+(px|em|rem|vh|vw|pt|pc|in|cm|mm|ex|ch|vmin|vmax)", code.lower()))
+
+
 def choose_code(text: str) -> Optional[str]:
     candidates = []
     low_text = text.lower()
     for match in CODE_RE.finditer(text):
         code = match.group(1)
         if code.lower() in {"http", "https", "html", "email", "login"}:
+            continue
+        if _looks_like_css_dimension(code):
             continue
         if code.isdigit() and 1900 <= int(code) <= 2099:
             continue

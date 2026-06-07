@@ -125,6 +125,15 @@ class ParserTest(unittest.TestCase):
         extraction = extract_signals(text)
         self.assertEqual(extraction.link, invite_link)
 
+    def test_email_verification_code_prefers_numeric_code_over_css_size(self):
+        text = (
+            "[发现AI] Email Verification Code\n"
+            "<img width=\"40px\" height=\"40px\">\n"
+            "Your email verification code is 890668."
+        )
+        extraction = extract_signals(text)
+        self.assertEqual(extraction.code, "890668")
+
 
 if __name__ == "__main__":
     unittest.main()
