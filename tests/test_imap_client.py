@@ -34,7 +34,7 @@ class ImapClientTest(unittest.TestCase):
             name="gmail",
             host="imap.gmail.com",
             port=993,
-            username="user@gmail.com",
+            username="user@example.com",
             auth="oauth2",
             oauth2_client_id="client",
             oauth2_client_secret="secret",
@@ -52,7 +52,7 @@ class ImapClientTest(unittest.TestCase):
         fake_conn.authenticate.assert_called_once()
         mechanism, callback = fake_conn.authenticate.call_args.args
         self.assertEqual(mechanism, "XOAUTH2")
-        self.assertEqual(callback(None), b"user=user@gmail.com\x01auth=Bearer access\x01\x01")
+        self.assertEqual(callback(None), b"user=user@example.com\x01auth=Bearer access\x01\x01")
 
 
 if __name__ == "__main__":

@@ -40,7 +40,7 @@ class ParserTest(unittest.TestCase):
     def test_html_anchor_href_is_preserved_for_action_link(self):
         msg = EmailMessage()
         msg["Subject"] = "QQ邮箱自动转发验证邮件"
-        msg["From"] = "letters101 <letters101@qq.com>"
+        msg["From"] = "Example User <sender@example.com>"
         msg.set_content(
             '<html><body>请同意此次请求。<a href="https://mail.qq.com/forward/accept?token=abc">接受转发</a>'
             '<a href="https://mail.qq.com/forward/cancel?token=def">取消接受转发</a></body></html>',
@@ -62,7 +62,7 @@ class ParserTest(unittest.TestCase):
     def test_multipart_includes_html_href_when_plain_has_no_url(self):
         msg = EmailMessage()
         msg["Subject"] = "Forward"
-        msg["From"] = "letters101 <letters101@qq.com>"
+        msg["From"] = "Example User <sender@example.com>"
         msg.set_content("请点击接受转发。")
         msg.add_alternative(
             '<html><body>请点击<a href="https://mail.qq.com/forward/accept?token=abc">接受转发</a></body></html>',

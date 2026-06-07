@@ -49,7 +49,7 @@ class ServiceTest(unittest.TestCase):
                 name="test",
                 host="imap.example.com",
                 port=993,
-                username="user@qq.com",
+                username="user@example.com",
                 password="p",
                 post_action="delete",
             )
@@ -93,7 +93,7 @@ class ServiceTest(unittest.TestCase):
                 name="test",
                 host="imap.example.com",
                 port=993,
-                username="user@qq.com",
+                username="user@example.com",
                 password="p",
             )
             config = AppConfig(
@@ -127,7 +127,7 @@ class ServiceTest(unittest.TestCase):
                 name="test",
                 host="imap.example.com",
                 port=993,
-                username="user@qq.com",
+                username="user@example.com",
                 password="p",
             )
             config = AppConfig(
@@ -142,12 +142,12 @@ class ServiceTest(unittest.TestCase):
 
             msg = EmailMessage()
             msg["Subject"] = "Code"
-            msg["From"] = "Changjie Shi <z498178921@gmail.com>"
+            msg["From"] = "Example Sender <sender@example.com>"
             msg["Message-ID"] = "<sender@example.com>"
             msg.set_content("验证码：0333771")
 
             self.assertEqual(service.process_mail(account, "3", msg.as_bytes()), 1)
-            self.assertEqual(pushed[0].title, "验证码 - Changjie Shi")
+            self.assertEqual(pushed[0].title, "验证码 - Example Sender")
             self.assertEqual(pushed[0].body, "验证码：0333771")
             self.assertEqual(pushed[0].copy, "0333771")
             service.close()

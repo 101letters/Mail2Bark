@@ -17,7 +17,7 @@ accounts:
   - name: gmail
     host: imap.gmail.com
     port: 993
-    username: user@gmail.com
+    username: user@example.com
     auth: oauth2
     oauth2_client_id: client
     oauth2_client_secret: secret
@@ -42,7 +42,7 @@ bark:
 accounts:
   - name: qq
     host: imap.qq.com
-    username: user@qq.com
+    username: user@example.com
     auth: password
 """,
                 encoding="utf-8",
